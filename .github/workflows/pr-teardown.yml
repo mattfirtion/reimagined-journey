@@ -1,0 +1,15 @@
+---
+name: PR Teardown
+on:
+  pull_request:
+    types:
+      - closed
+jobs:
+  pr-env-teardown:
+    name: Destroy PR Environment
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Destroy
+        run: |
+          echo "Run CDK Destroy for PR #${{ github.event.number }}"
